@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <defs>
+    <!-- VIP Dark Emerald Radial Depth -->
+    <radialGradient id="vipBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#144b3e" />
+      <stop offset="60%" stop-color="#08231c" />
+      <stop offset="100%" stop-color="#030d0a" />
+    </radialGradient>
+
+    <!-- VIP Neon Cyan to Electric Mint Gradient -->
+    <linearGradient id="vipCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5fdee7" />
+      <stop offset="50%" stop-color="#00ffaa" />
+      <stop offset="100%" stop-color="#00e5ff" />
+    </linearGradient>
+
+    <!-- VIP Gold Highlight Gradient -->
+    <linearGradient id="vipGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffe270" />
+      <stop offset="100%" stop-color="#5fdee7" />
+    </linearGradient>
+
+    <!-- Outer Glow Filter -->
+    <filter id="vipGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="2.5" flood-color="#5fdee7" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <!-- Silicon Chip Outer Die (Hexagonal Beveled Shield) -->
+  <path d="M 18 4 L 46 4 L 60 18 L 60 46 L 46 60 L 18 60 L 4 46 L 4 18 Z" 
+        fill="url(#vipBg)" 
+        stroke="url(#vipCyan)" 
+        stroke-width="2.5" 
+        stroke-linejoin="round"
+        filter="url(#vipGlow)" />
+
+  <!-- Inner Metallic Frame -->
+  <path d="M 20 8 L 44 8 L 56 20 L 56 44 L 44 56 L 20 56 L 8 44 L 8 20 Z" 
+        fill="#04120e" 
+        stroke="#5fdee7" 
+        stroke-width="1" 
+        stroke-opacity="0.4" />
+
+  <!-- Silicon Bus Contact Pins -->
+  <line x1="26" y1="2" x2="26" y2="6" stroke="#00ffaa" stroke-width="2" stroke-linecap="round" />
+  <line x1="38" y1="2" x2="38" y2="6" stroke="#5fdee7" stroke-width="2" stroke-linecap="round" />
+  <line x1="26" y1="58" x2="26" y2="62" stroke="#5fdee7" stroke-width="2" stroke-linecap="round" />
+  <line x1="38" y1="58" x2="38" y2="62" stroke="#00ffaa" stroke-width="2" stroke-linecap="round" />
+  <line x1="2" y1="26" x2="6" y2="26" stroke="#00ffaa" stroke-width="2" stroke-linecap="round" />
+  <line x1="2" y1="38" x2="6" y2="38" stroke="#5fdee7" stroke-width="2" stroke-linecap="round" />
+  <line x1="58" y1="26" x2="62" y2="26" stroke="#5fdee7" stroke-width="2" stroke-linecap="round" />
+  <line x1="58" y1="38" x2="62" y2="38" stroke="#00ffaa" stroke-width="2" stroke-linecap="round" />
+
+  <!-- VIP Crown / Diamond Emblem at Top -->
+  <path d="M 25 14 L 28 19 L 32 13 L 36 19 L 39 14 L 37 21 L 27 21 Z" 
+        fill="url(#vipGold)" 
+        stroke="#ffe270" 
+        stroke-width="0.5" />
+
+  <!-- Glowing Core Diamond -->
+  <polygon points="32,15 34,18 32,21 30,18" fill="#ffffff" opacity="0.9" />
+
+  <!-- Central Bold VIP Typography: TNC -->
+  <text x="32" y="38" 
+        text-anchor="middle" 
+        fill="url(#vipCyan)" 
+        font-family="system-ui, -apple-system, sans-serif" 
+        font-weight="900" 
+        font-size="18" 
+        letter-spacing="-0.5">TNC</text>
+
+  <!-- High-Precision Microchip Traces -->
+  <circle cx="16" cy="46" r="1.5" fill="#00ffaa" />
+  <circle cx="48" cy="46" r="1.5" fill="#5fdee7" />
+  <path d="M 16 46 L 24 46 L 27 49 L 37 49 L 40 46 L 48 46" 
+        stroke="url(#vipCyan)" 
+        stroke-width="1.5" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+
+  <!-- VIP Badge Accent -->
+  <rect x="22" y="51" width="20" height="2" rx="1" fill="url(#vipGold)" />
+</svg>

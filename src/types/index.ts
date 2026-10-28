@@ -57,6 +57,7 @@ export interface Article {
   author: Author;
   seoAlt: string;
   infographicId: string;
+  heroImage?: string;
   executiveSummary: string;
   keyTakeaways: string[];
   architecturalBlueprint: {

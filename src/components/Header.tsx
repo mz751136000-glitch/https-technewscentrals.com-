@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Search, Terminal, Menu, X, BookOpen, Layers } from 'lucide-react';
 import { CategoryKey } from '../types';
 
+export type ViewType = 'feed' | 'about' | 'contact' | 'privacy' | 'terms' | 'disclaimer' | 'editors' | 'reader';
+
 interface HeaderProps {
   currentCategory: CategoryKey;
   onSelectCategory: (cat: CategoryKey) => void;
-  activeView: 'feed' | 'about' | 'contact' | 'editors' | 'reader';
-  onNavigateView: (view: 'feed' | 'about' | 'contact' | 'editors') => void;
+  activeView: ViewType;
+  onNavigateView: (view: Exclude<ViewType, 'reader'>) => void;
   searchQuery: string;
   onSearchChange: (query: string) => void;
   onOpenInspector: () => void;
@@ -36,9 +38,6 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'gadgets-mobile', label: 'Gadgets & Mobile', action: () => { onNavigateView('feed'); onSelectCategory('gadgets-mobile'); } },
     { id: 'software-apps', label: 'Software & Apps', action: () => { onNavigateView('feed'); onSelectCategory('software-apps'); } },
     { id: 'gaming-entertainment', label: 'Gaming & Entertainment', action: () => { onNavigateView('feed'); onSelectCategory('gaming-entertainment'); } },
-    { id: 'about', label: 'About The Blog', action: () => onNavigateView('about') },
-    { id: 'contact', label: 'Contact', action: () => onNavigateView('contact') },
-    { id: 'editors', label: 'Editors', action: () => onNavigateView('editors') },
   ];
 
   const isNavActive = (item: typeof navItems[0]) => {
@@ -51,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#5fdee7]/20 bg-[#081c18]/95 backdrop-blur-md transition-colors">
+    <header className="sticky top-0 z-40 w-full border-b border-[#5fdee7]/20 bg-[#081c18]/95 backdrop-blur-md transition-colors shadow-lg">
       {/* Top Bar 3-Zone Contract */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         
@@ -75,21 +74,62 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        {/* Zone 2: Primary Navigation Links (Desktop) */}
+        {/* Zone 2: Primary Navigation Links (Categories Prominently at Top) */}
         <nav className="hidden xl:flex items-center gap-6 text-[13px] font-medium text-slate-300">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => { item.action(); setMobileMenuOpen(false); }}
-              className={`whitespace-nowrap shrink-0 transition-colors py-1 ${
-                isNavActive(item)
-                  ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
-                  : 'text-slate-300 hover:text-white'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+          <button
+            onClick={() => { onNavigateView('feed'); onSelectCategory('all'); }}
+            className={`whitespace-nowrap transition-colors py-1 ${
+              activeView === 'feed' && currentCategory === 'all' && !isBookmarksActive
+                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
+                : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            Home Feed
+          </button>
+
+          <button
+            onClick={() => { onNavigateView('feed'); onSelectCategory('ai-emerging-tech'); }}
+            className={`whitespace-nowrap transition-colors py-1 ${
+              activeView === 'feed' && currentCategory === 'ai-emerging-tech'
+                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
+                : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            AI & Emerging Tech
+          </button>
+
+          <button
+            onClick={() => { onNavigateView('feed'); onSelectCategory('gadgets-mobile'); }}
+            className={`whitespace-nowrap transition-colors py-1 ${
+              activeView === 'feed' && currentCategory === 'gadgets-mobile'
+                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
+                : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            Gadgets & Mobile
+          </button>
+
+          <button
+            onClick={() => { onNavigateView('feed'); onSelectCategory('software-apps'); }}
+            className={`whitespace-nowrap transition-colors py-1 ${
+              activeView === 'feed' && currentCategory === 'software-apps'
+                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
+                : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            Software & Apps
+          </button>
+
+          <button
+            onClick={() => { onNavigateView('feed'); onSelectCategory('gaming-entertainment'); }}
+            className={`whitespace-nowrap transition-colors py-1 ${
+              activeView === 'feed' && currentCategory === 'gaming-entertainment'
+                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
+                : 'text-slate-300 hover:text-white'
+            }`}
+          >
+            Gaming & Entertainment
+          </button>
         </nav>
 
         {/* Zone 3: Interactive Affordances & Actions */}
@@ -163,6 +203,46 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
+      {/* Top Categories Quick Strip (Prominently displayed at top) */}
+      <div className="border-t border-[#5fdee7]/15 bg-[#051713]/95 backdrop-blur-md px-4 py-2">
+        <div className="mx-auto flex max-w-7xl items-center justify-between overflow-x-auto no-scrollbar gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-[10px] font-mono text-[#00ffaa] font-bold uppercase tracking-wider hidden sm:inline mr-1">
+              CATEGORIES:
+            </span>
+            {[
+              { id: 'all', label: 'All 20 Papers', icon: '⚡' },
+              { id: 'ai-emerging-tech', label: 'AI & Emerging Tech', icon: '🤖' },
+              { id: 'gadgets-mobile', label: 'Gadgets & Mobile', icon: '📱' },
+              { id: 'software-apps', label: 'Software & Apps', icon: '💻' },
+              { id: 'gaming-entertainment', label: 'Gaming & Entertainment', icon: '🎮' },
+            ].map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  onNavigateView('feed');
+                  onSelectCategory(cat.id as CategoryKey);
+                }}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono transition-all whitespace-nowrap ${
+                  activeView === 'feed' && currentCategory === cat.id && !isBookmarksActive
+                    ? 'bg-[#5fdee7] text-slate-950 font-bold shadow-[0_0_12px_rgba(95,222,231,0.35)]'
+                    : 'text-slate-300 hover:text-white hover:bg-[#0c2f25] border border-[#5fdee7]/15'
+                }`}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.label}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="hidden lg:flex items-center gap-2 text-[11px] font-mono text-slate-400 shrink-0">
+            <span className="text-[#5fdee7]">ISSN 2981-4402</span>
+            <span>·</span>
+            <span className="text-slate-400">Published Daily</span>
+          </div>
+        </div>
+      </div>
+
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
         <div className="xl:hidden border-t border-[#5fdee7]/20 bg-[#081c18] px-4 py-4 space-y-2">
@@ -182,10 +262,28 @@ export const Header: React.FC<HeaderProps> = ({
               {item.label}
             </button>
           ))}
-          <div className="pt-2 border-t border-[#5fdee7]/15">
+          <div className="pt-2 border-t border-[#5fdee7]/15 space-y-1">
+            <button
+              onClick={() => { onNavigateView('privacy'); setMobileMenuOpen(false); }}
+              className="block w-full text-left px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+            >
+              Privacy Policy
+            </button>
+            <button
+              onClick={() => { onNavigateView('terms'); setMobileMenuOpen(false); }}
+              className="block w-full text-left px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+            >
+              Terms & Conditions
+            </button>
+            <button
+              onClick={() => { onNavigateView('disclaimer'); setMobileMenuOpen(false); }}
+              className="block w-full text-left px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+            >
+              Disclaimer
+            </button>
             <button
               onClick={() => { onOpenInspector(); setMobileMenuOpen(false); }}
-              className="flex w-full items-center gap-2 px-3 py-2 text-xs font-mono text-[#00ffaa] bg-[#0c2720] rounded-md"
+              className="flex w-full items-center gap-2 px-3 py-2 text-xs font-mono text-[#00ffaa] bg-[#0c2720] rounded-md mt-2"
             >
               <Terminal className="h-4 w-4" />
               <span>Validate ads.txt & Crawler Status</span>

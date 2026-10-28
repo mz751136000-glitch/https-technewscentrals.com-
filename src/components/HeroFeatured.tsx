@@ -116,12 +116,12 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
 
           </div>
 
-          {/* Right Column: Custom Vector Infographic Visual */}
-          <div className="lg:col-span-6">
+          {/* Right Column: Keyword-Specific 3D Embossed Architectural Visual */}
+          <div className="lg:col-span-6 space-y-2">
             <div 
               onClick={() => onReadArticle(article.id)}
               className="cursor-pointer transition-transform duration-300 hover:scale-[1.01]"
-              title="Click to view full paper with zoomable schematic"
+              title="Click to read technical paper and view full zoomable schematic"
             >
               <InfographicRenderer 
                 id={article.infographicId} 

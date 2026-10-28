@@ -31,6 +31,13 @@ export const METRIC_STATS: MetricStat[] = [
   }
 ];
 
+export const CATEGORY_HERO_IMAGES = {
+  'ai-emerging-tech': '/src/assets/images/ai_emerging_tech_hero_1793152995614.jpg',
+  'gadgets-mobile': '/src/assets/images/gadgets_mobile_hero_1793152996737.jpg',
+  'software-apps': '/src/assets/images/software_cloud_hero_1793152997330.jpg',
+  'gaming-entertainment': '/src/assets/images/gaming_hardware_hero_1793152996663.jpg'
+};
+
 export const TICKER_ITEMS: TickerItem[] = [
   {
     id: "tick-1",
@@ -76,7 +83,7 @@ export const TICKER_ITEMS: TickerItem[] = [
   }
 ];
 
-export const ARTICLES: Article[] = [
+const RAW_ARTICLES: Article[] = [
   // ================= CATEGORY 1: AI & EMERGING TECH =================
   {
     id: "llm-orchestration-agentic-workflows",
@@ -2121,3 +2128,8 @@ void main() {
     ]
   }
 ];
+
+export const ARTICLES: Article[] = RAW_ARTICLES.map((art) => ({
+  ...art,
+  heroImage: CATEGORY_HERO_IMAGES[art.category] || undefined
+}));

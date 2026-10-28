@@ -3,11 +3,13 @@ import { Phone, Mail, Terminal, Shield, ArrowUp } from 'lucide-react';
 import { PolicyType } from './EditorialModal';
 import { CategoryKey } from '../types';
 
+import { ViewType } from './Header';
+
 interface FooterProps {
   onOpenPolicy: (type: PolicyType) => void;
   onOpenInspector: () => void;
   onSelectCategory: (cat: CategoryKey) => void;
-  onNavigateView: (view: 'feed' | 'about' | 'contact' | 'editors') => void;
+  onNavigateView: (view: Exclude<ViewType, 'reader'>) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -116,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => { onNavigateView('about'); scrollToTop(); }}
                   className="hover:text-white transition-colors"
                 >
-                  About The Blog
+                  About Us
                 </button>
               </li>
               <li>
@@ -132,7 +134,7 @@ export const Footer: React.FC<FooterProps> = ({
                   onClick={() => { onNavigateView('contact'); scrollToTop(); }}
                   className="hover:text-white transition-colors"
                 >
-                  Contact Desk & Submissions
+                  Contact Us & Direct Desk
                 </button>
               </li>
               <li>
@@ -154,7 +156,7 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-2 text-xs">
               <li>
                 <button
-                  onClick={() => onOpenPolicy('privacy')}
+                  onClick={() => { onNavigateView('privacy'); scrollToTop(); }}
                   className="hover:text-white transition-colors"
                 >
                   Privacy Policy
@@ -162,7 +164,7 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
-                  onClick={() => onOpenPolicy('terms')}
+                  onClick={() => { onNavigateView('terms'); scrollToTop(); }}
                   className="hover:text-white transition-colors"
                 >
                   Terms & Conditions
@@ -170,8 +172,16 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <button
+                  onClick={() => { onNavigateView('disclaimer'); scrollToTop(); }}
+                  className="hover:text-white transition-colors"
+                >
+                  Disclaimer
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={onOpenInspector}
-                  className="flex items-center gap-1.5 text-[#00ffaa] hover:underline font-mono"
+                  className="flex items-center gap-1.5 text-[#00ffaa] hover:underline font-mono pt-1"
                 >
                   <Terminal className="h-3.5 w-3.5" />
                   <span>ads.txt Validator</span>

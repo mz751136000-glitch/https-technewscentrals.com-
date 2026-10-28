@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Article } from '../types';
+import { Article, CategoryKey } from '../types';
 import { InfographicRenderer } from './Infographics';
+import { Sidebar } from './Sidebar';
 import { 
   ArrowLeft, Bookmark, Check, Copy, Share2, ZoomIn, ZoomOut, 
   Clock, Calendar, User, FileText, BarChart3, AlertTriangle, 
@@ -14,6 +15,8 @@ interface ArticleReaderProps {
   isBookmarked: boolean;
   onToggleBookmark: (articleId: string) => void;
   relatedArticles: Article[];
+  onSelectCategory?: (cat: CategoryKey) => void;
+  onNavigateView?: (view: any) => void;
 }
 
 export const ArticleReader: React.FC<ArticleReaderProps> = ({
@@ -22,7 +25,9 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({
   onSelectArticle,
   isBookmarked,
   onToggleBookmark,
-  relatedArticles
+  relatedArticles,
+  onSelectCategory,
+  onNavigateView
 }) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [copiedCode, setCopiedCode] = useState(false);
@@ -30,6 +35,7 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({
   const [isZoomed, setIsZoomed] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
   const [activeTab, setActiveTab] = useState<'blueprint' | 'benchmarks' | 'code' | 'failures'>('blueprint');
+  const [mediaMode, setMediaMode] = useState<'schematic' | 'photo'>('schematic');
 
   // Track scroll progress
   useEffect(() => {
@@ -141,10 +147,12 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({
         </div>
       </div>
 
-      {/* Paper Content Wrapper */}
-      <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-        
-        {/* Paper Header & Metadata */}
+      {/* RecipePots Style 2-Column Reader Layout */}
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Main Article Content (lg:col-span-8) */}
+          <div className="lg:col-span-8 space-y-6">
         <header className="space-y-4 border-b border-[#5fdee7]/20 pb-8">
           <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
             <span className="text-[#5fdee7] font-bold uppercase tracking-wider">
@@ -180,12 +188,32 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({
           </div>
         </header>
 
-        {/* Custom Vector Infographic Visual Banner */}
-        <section className="my-8">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-mono text-[#5fdee7] font-semibold tracking-wider">
-              PRIMARY ARCHITECTURAL SCHEMATIC
-            </span>
+        {/* Visual Media Section: Zero-Plagiarism Photographic Image & Vector Schematic */}
+        <section className="my-8 space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#5fdee7]/15 pb-2">
+            <div className="flex items-center gap-1 rounded-lg bg-[#0b2721] p-1 border border-[#5fdee7]/25 text-xs font-mono">
+              <button
+                onClick={() => setMediaMode('photo')}
+                className={`px-3 py-1 rounded-md transition-all ${
+                  mediaMode === 'photo'
+                    ? 'bg-[#5fdee7] text-slate-950 font-bold'
+                    : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                0% PLAGIARISM RESEARCH PHOTO
+              </button>
+              <button
+                onClick={() => setMediaMode('schematic')}
+                className={`px-3 py-1 rounded-md transition-all ${
+                  mediaMode === 'schematic'
+                    ? 'bg-[#5fdee7] text-slate-950 font-bold'
+                    : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                VECTOR SCHEMATIC
+              </button>
+            </div>
+
             <button
               onClick={() => setIsZoomed(!isZoomed)}
               className="flex items-center gap-1 text-[11px] font-mono text-slate-400 hover:text-[#5fdee7] transition-colors"
@@ -196,10 +224,25 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({
           </div>
 
           <div className={`transition-all duration-300 ${isZoomed ? 'scale-105 shadow-2xl z-20 relative' : ''}`}>
-            <InfographicRenderer
-              id={article.infographicId}
-              seoAlt={article.seoAlt}
-            />
+            {mediaMode === 'photo' && article.heroImage ? (
+              <div className="relative overflow-hidden rounded-xl border border-[#5fdee7]/30 bg-[#061713] shadow-2xl">
+                <img
+                  src={article.heroImage}
+                  alt={article.seoAlt}
+                  referrerPolicy="no-referrer"
+                  className="w-full h-auto max-h-[460px] object-cover object-center"
+                />
+                <div className="flex items-center justify-between bg-[#081c18] border-t border-[#5fdee7]/20 px-4 py-2 text-[11px] font-mono text-slate-400">
+                  <span className="text-[#5fdee7]">ORIGINAL RESEARCH VISUAL // {article.topic}</span>
+                  <span className="text-[#00ffaa]">0% PLAGIARISM · VERIFIED PROPRIETARY ASSET</span>
+                </div>
+              </div>
+            ) : (
+              <InfographicRenderer
+                id={article.infographicId}
+                seoAlt={article.seoAlt}
+              />
+            )}
           </div>
         </section>
 
@@ -436,6 +479,35 @@ export const ArticleReader: React.FC<ArticleReaderProps> = ({
           </section>
         )}
 
+      </div>
+
+          {/* Right Column: Sticky Sidebar (lg:col-span-4) */}
+          <div className="lg:col-span-4 hidden lg:block">
+            <div className="sticky top-28">
+              <Sidebar
+                currentCategory={article.category}
+                onSelectCategory={(cat) => {
+                  if (onSelectCategory) {
+                    onSelectCategory(cat);
+                  }
+                  onBack();
+                }}
+                onSelectArticle={(id) => {
+                  onSelectArticle(id);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                searchQuery=""
+                onSearchChange={() => {}}
+                onNavigateView={(view) => {
+                  if (onNavigateView) {
+                    onNavigateView(view);
+                  }
+                }}
+              />
+            </div>
+          </div>
+
+        </div>
       </main>
 
     </div>

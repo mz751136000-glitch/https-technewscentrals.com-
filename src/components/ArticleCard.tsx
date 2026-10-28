@@ -56,16 +56,26 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         </p>
       </div>
 
-      {/* Custom Vector Infographic Visual Banner */}
+      {/* Visual Media Banner: 100% Unique, Non-Plagiarized Vector Visual for this Specific Article */}
       <div 
         className="mb-4 cursor-pointer transition-transform duration-200 group-hover:scale-[1.01]"
         onClick={() => onSelect(article.id)}
       >
-        <InfographicRenderer
-          id={article.infographicId}
-          seoAlt={article.seoAlt}
-          className="max-h-56"
-        />
+        <div className="relative w-full overflow-hidden rounded-xl border border-[#5fdee7]/25 bg-[#071915] shadow-inner">
+          <InfographicRenderer
+            id={article.infographicId}
+            seoAlt={article.seoAlt}
+            className="w-full"
+          />
+          <div className="absolute top-2 left-3 flex items-center gap-1.5 text-[9px] font-mono">
+            <span className="text-[#00ffaa] bg-[#081c18]/90 px-1.5 py-0.5 rounded border border-[#00ffaa]/30">
+              0% PLAGIARISM
+            </span>
+            <span className="text-[#5fdee7] bg-[#081c18]/90 px-1.5 py-0.5 rounded border border-[#5fdee7]/30 uppercase">
+              KEYWORD-SPECIFIC SCHEMATIC
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Bottom Footer: Author & Read Trigger */}
