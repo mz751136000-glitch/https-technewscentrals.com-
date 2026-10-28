@@ -1,8 +1,15 @@
-# Google AdSense Authorized Digital Sellers
+# technewscentrals - Authorized Digital Sellers (ads.txt)
 # Domain: technewscentrals.com
-# Format: <Field #1>, <Field #2>, <Field #3>, <Field #4>
-# Field #1: Domain name of the advertising system
-# Field #2: Publisher account identifier
-# Field #3: Account type (DIRECT or RESELLER)
-# Field #4: Certification authority ID
+# Contact: hostinger992@gmail.com / +923020409739
+# Google AdSense
 google.com, pub-7892341052189342, DIRECT, f08c47fec0942fa0
+
+# RevBid & Programmatic Header Bidding Partners
+rubiconproject.com, 18274, RESELLER, 0bfd66d529a55803
+pubmatic.com, 156291, RESELLER, 5d62403b186f2142
+appnexus.com, 10842, RESELLER, f5ab79cb980f11d1
+openx.com, 537142981, RESELLER, 6a698e2ec38604c6
+indexexchange.com, 184920, RESELLER, 50b1c356f2c5c849
+sovrn.com, 401928, RESELLER, fbfd66d529a55803
+triplelift.com, 8492, RESELLER, 6c0852e97a31b40c
+criteo.com, 948210, RESELLER, b3a7f8050942fa01

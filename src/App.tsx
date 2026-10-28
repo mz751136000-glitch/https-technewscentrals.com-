@@ -17,8 +17,11 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsConditionsPage } from './pages/TermsConditionsPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
 import { EditorsView } from './components/EditorsView';
+import { SitemapPage } from './pages/SitemapPage';
 import { Sidebar } from './components/Sidebar';
 import { BottomPagesDirectory } from './components/BottomPagesDirectory';
+import { AdSenseBanner } from './components/AdSenseBanner';
+import { ConsentBanner } from './components/ConsentBanner';
 import { RepositoryInspectorModal } from './components/RepositoryInspectorModal';
 import { EditorialModal, PolicyType } from './components/EditorialModal';
 import { Footer } from './components/Footer';
@@ -142,7 +145,7 @@ export default function App() {
   const heroArticle = ARTICLES[0];
 
   return (
-    <div className="min-h-screen bg-[#081c18] text-slate-100 flex flex-col font-sans selection:bg-[#5fdee7]/20 selection:text-[#5fdee7]">
+    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col font-sans selection:bg-sky-500/20 selection:text-sky-300">
       
       {/* 1. Header (Top Bar Contract: Brand, Nav Links, Interactive Inspector & Search) */}
       <Header
@@ -206,10 +209,26 @@ export default function App() {
         <DisclaimerPage onBackToFeed={handleBackToFeed} />
       ) : activeView === 'editors' ? (
         <EditorsView onBackToFeed={handleBackToFeed} />
+      ) : activeView === 'sitemap' ? (
+        <SitemapPage 
+          onBackToFeed={handleBackToFeed}
+          onSelectArticle={handleSelectArticle}
+          onNavigateView={(view) => {
+            setActiveView(view);
+            setSelectedArticleId(null);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          onSelectCategory={handleSelectCategory}
+        />
       ) : (
         /* Home Feed View */
         <main className="flex-1">
           
+          {/* Top Leaderboard Ad Unit (AdSense & RevBid Programmatic Slot) */}
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4">
+            <AdSenseBanner slot="leaderboard" />
+          </div>
+
           {/* Lead Research Paper Spotlight (Hero) - Rendered on page 1 of unfiltered feed */}
           {currentPage === 1 && currentCategory === 'all' && !searchQuery && !isBookmarksOnly && (
             <HeroFeatured
@@ -228,9 +247,9 @@ export default function App() {
               <div className="lg:col-span-8 space-y-6">
                 
                 {/* Section Header & Breadcrumb Ribbon */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#5fdee7]/20 pb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
                   <div>
-                    <span className="text-[10px] font-mono tracking-widest text-[#5fdee7] uppercase">
+                    <span className="text-[10px] font-mono tracking-widest text-sky-400 uppercase font-bold">
                       TECHNEWSCENTRALS FEED
                     </span>
                     <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-0.5">
@@ -248,14 +267,14 @@ export default function App() {
                   
                   {/* Result Count Badge */}
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono text-[#00ffaa] bg-[#071915] border border-[#00ffaa]/30 px-2.5 py-1 rounded-md">
+                    <span className="text-xs font-mono text-emerald-400 bg-slate-900 border border-emerald-500/30 px-2.5 py-1 rounded-md">
                       {filteredArticles.length} Published Articles
                     </span>
                   </div>
                 </div>
 
                 {/* Filter Ribbon: Category Tabs & Sort Dropdown */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0b2721] border border-[#5fdee7]/25 p-3 rounded-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-900/80 border border-slate-800 p-3 rounded-xl shadow-md">
                   {/* Category Segmented Tabs */}
                   <div className="flex flex-wrap items-center gap-1.5">
                     {[
@@ -268,10 +287,10 @@ export default function App() {
                       <button
                         key={cat.id}
                         onClick={() => handleSelectCategory(cat.id as CategoryKey)}
-                        className={`px-3 py-1 text-xs font-mono rounded-lg transition-all whitespace-nowrap ${
+                        className={`cursor-pointer px-3 py-1 text-xs font-mono rounded-lg transition-all whitespace-nowrap ${
                           currentCategory === cat.id && !isBookmarksOnly
-                            ? 'bg-[#5fdee7] text-slate-950 font-bold shadow-[0_0_12px_rgba(95,222,231,0.3)]'
-                            : 'text-slate-300 hover:text-white hover:bg-[#124237]'
+                            ? 'bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/25'
+                            : 'text-slate-300 hover:text-white hover:bg-slate-800'
                         }`}
                       >
                         {cat.label}
@@ -281,11 +300,11 @@ export default function App() {
 
                   {/* Sorting Control */}
                   <div className="flex items-center gap-2 text-xs font-mono text-slate-400 self-end sm:self-auto">
-                    <SlidersHorizontal className="h-3.5 w-3.5 text-[#5fdee7]" />
+                    <SlidersHorizontal className="h-3.5 w-3.5 text-sky-400" />
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value as any)}
-                      className="rounded bg-[#071915] border border-[#5fdee7]/30 px-2.5 py-1 text-xs text-white focus:outline-none focus:border-[#5fdee7]"
+                      className="cursor-pointer rounded bg-slate-950 border border-slate-700 px-2.5 py-1 text-xs text-white focus:outline-none focus:border-sky-400"
                     >
                       <option value="newest">Chronological</option>
                       <option value="wordCount">Depth (Word Count)</option>
@@ -296,9 +315,9 @@ export default function App() {
 
                 {/* Active Filter Notification */}
                 {(searchQuery || isBookmarksOnly) && (
-                  <div className="flex items-center justify-between rounded-lg bg-[#0c2f26] border border-[#5fdee7]/30 p-3 text-xs font-mono">
+                  <div className="flex items-center justify-between rounded-lg bg-slate-900 border border-sky-500/30 p-3 text-xs font-mono">
                     <div className="flex items-center gap-2">
-                      <span className="text-[#5fdee7]">
+                      <span className="text-sky-400">
                         {isBookmarksOnly ? 'Saved Bookmarks' : `Search query: "${searchQuery}"`}
                       </span>
                       <span className="text-slate-400">({filteredArticles.length} matches)</span>
@@ -309,7 +328,7 @@ export default function App() {
                         setIsBookmarksOnly(false);
                         setCurrentPage(1);
                       }}
-                      className="flex items-center gap-1 text-slate-300 hover:text-white"
+                      className="cursor-pointer flex items-center gap-1 text-slate-300 hover:text-white"
                     >
                       <RotateCcw className="h-3 w-3" />
                       <span>Reset</span>
@@ -331,7 +350,7 @@ export default function App() {
                     ))}
                   </div>
                 ) : (
-                  <div className="my-16 text-center space-y-4 rounded-xl bg-[#0b2721] border border-[#5fdee7]/20 p-8">
+                  <div className="my-16 text-center space-y-4 rounded-xl bg-slate-900 border border-slate-800 p-8 shadow-xl">
                     <BookOpen className="h-10 w-10 text-slate-500 mx-auto" />
                     <h3 className="text-lg font-bold text-white font-mono">
                       No technical papers match the active filter criteria
@@ -345,7 +364,7 @@ export default function App() {
                         setCurrentCategory('all');
                         setIsBookmarksOnly(false);
                       }}
-                      className="rounded-lg bg-[#5fdee7] px-4 py-2 text-xs font-mono font-bold text-slate-950"
+                      className="cursor-pointer rounded-lg bg-sky-500 px-4 py-2 text-xs font-mono font-bold text-slate-950 shadow-lg shadow-sky-500/20"
                     >
                       RESET ALL FILTERS
                     </button>
@@ -354,17 +373,17 @@ export default function App() {
 
                 {/* Interactive Pagination ("Page 1 of 2") */}
                 {totalPages > 1 && (
-                  <div className="mt-8 flex items-center justify-center gap-4 border-t border-[#5fdee7]/20 pt-6">
+                  <div className="mt-8 flex items-center justify-center gap-4 border-t border-slate-800 pt-6">
                     <button
                       onClick={() => {
                         setCurrentPage((prev) => Math.max(1, prev - 1));
                         window.scrollTo({ top: 380, behavior: 'smooth' });
                       }}
                       disabled={currentPage === 1}
-                      className={`flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-mono transition-all ${
+                      className={`cursor-pointer flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-mono transition-all ${
                         currentPage === 1
                           ? 'border-slate-800 text-slate-600 cursor-not-allowed'
-                          : 'border-[#5fdee7]/30 bg-[#0d2e26] text-[#5fdee7] hover:bg-[#124237]'
+                          : 'border-slate-700 bg-slate-900 text-sky-400 hover:bg-slate-800 hover:border-sky-400'
                       }`}
                     >
                       <ChevronLeft className="h-4 w-4" />
@@ -372,7 +391,7 @@ export default function App() {
                     </button>
 
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono font-bold text-white bg-[#0b2721] border border-[#5fdee7]/40 px-3.5 py-1.5 rounded-lg shadow-[0_0_10px_rgba(95,222,231,0.2)]">
+                      <span className="text-xs font-mono font-bold text-white bg-slate-900 border border-sky-500/40 px-3.5 py-1.5 rounded-lg shadow-md shadow-sky-500/20">
                         Page {currentPage} of {totalPages}
                       </span>
                     </div>
@@ -383,10 +402,10 @@ export default function App() {
                         window.scrollTo({ top: 380, behavior: 'smooth' });
                       }}
                       disabled={currentPage === totalPages}
-                      className={`flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-mono transition-all ${
+                      className={`cursor-pointer flex items-center gap-1 rounded-lg border px-3 py-1.5 text-xs font-mono transition-all ${
                         currentPage === totalPages
                           ? 'border-slate-800 text-slate-600 cursor-not-allowed'
-                          : 'border-[#5fdee7]/30 bg-[#0d2e26] text-[#5fdee7] hover:bg-[#124237]'
+                          : 'border-slate-700 bg-slate-900 text-sky-400 hover:bg-slate-800 hover:border-sky-400'
                       }`}
                     >
                       <span>Next</span>
@@ -457,6 +476,14 @@ export default function App() {
         isOpen={activePolicy !== null}
         type={activePolicy || 'privacy'}
         onClose={() => setActivePolicy(null)}
+      />
+
+      {/* Cookie & Ad Consent Banner (AdSense & RevBid Compliant) */}
+      <ConsentBanner
+        onOpenPrivacy={() => {
+          setActiveView('privacy');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
     </div>

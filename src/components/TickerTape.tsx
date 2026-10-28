@@ -11,14 +11,14 @@ export const TickerTape: React.FC<TickerTapeProps> = ({ onSelectArticle }) => {
   const repeatedItems = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
 
   return (
-    <div className="relative w-full overflow-hidden border-y border-[#5fdee7]/40 bg-[#061713] py-2.5 shadow-[0_0_15px_rgba(95,222,231,0.08)]">
+    <div className="relative w-full overflow-hidden border-y border-sky-500/30 bg-slate-950 py-2.5 shadow-md shadow-sky-500/5">
       {/* Dynamic left and right fade masks */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-[#061713] to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-[#061713] to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-12 bg-gradient-to-r from-slate-950 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-12 bg-gradient-to-l from-slate-950 to-transparent" />
 
       {/* Static Label Indicator */}
-      <div className="absolute left-3 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center gap-1.5 rounded-md bg-[#0c2f26] border border-[#5fdee7]/50 px-2 py-0.5 text-[10px] font-mono font-bold text-[#5fdee7] shadow-[0_0_8px_rgba(95,222,231,0.3)]">
-        <Zap className="h-3 w-3 text-[#00ffaa] fill-[#00ffaa]" />
+      <div className="absolute left-3 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center gap-1.5 rounded-md bg-slate-900 border border-sky-400/50 px-2 py-0.5 text-[10px] font-mono font-bold text-sky-400 shadow-sm shadow-sky-400/20">
+        <Zap className="h-3 w-3 text-emerald-400 fill-emerald-400" />
         <span>WIRE</span>
       </div>
 
@@ -27,15 +27,15 @@ export const TickerTape: React.FC<TickerTapeProps> = ({ onSelectArticle }) => {
           <div
             key={`${item.id}-${index}`}
             onClick={() => item.articleId && onSelectArticle(item.articleId)}
-            className="flex items-center gap-3 pr-8 cursor-pointer group"
+            className="cursor-pointer flex items-center gap-3 pr-8 group"
           >
             {/* Glowing Tech Tag */}
-            <span className="shrink-0 text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-[#0f3a30] text-[#5fdee7] border border-[#5fdee7]/30 shadow-[0_0_6px_rgba(95,222,231,0.2)] group-hover:border-[#5fdee7] group-hover:text-white transition-all">
+            <span className="shrink-0 text-[10px] font-mono font-bold tracking-wider px-2 py-0.5 rounded bg-slate-900 text-sky-400 border border-sky-500/30 group-hover:border-sky-400 group-hover:text-white transition-all">
               {item.tag}
             </span>
 
             {/* Headline */}
-            <span className="text-xs font-medium text-slate-200 group-hover:text-[#5fdee7] transition-colors whitespace-nowrap">
+            <span className="text-xs font-medium text-slate-200 group-hover:text-sky-300 transition-colors whitespace-nowrap">
               {item.headline}
             </span>
 
@@ -44,9 +44,9 @@ export const TickerTape: React.FC<TickerTapeProps> = ({ onSelectArticle }) => {
               {item.timestamp}
             </span>
 
-            <ArrowRight className="h-3 w-3 text-[#00ffaa] opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-0.5" />
+            <ArrowRight className="h-3 w-3 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-0.5" />
 
-            <span className="text-slate-700 select-none ml-2">/</span>
+            <span className="text-slate-800 select-none ml-2">/</span>
           </div>
         ))}
       </div>

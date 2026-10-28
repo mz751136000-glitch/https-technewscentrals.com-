@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://technewscentrals.com/sitemap.xml
+Sitemap: https://ais-pre-2qareihgpz4c5jmtotkqmp-318230848060.asia-southeast1.run.app/sitemap.xml
+
+# AdSense and Crawler directives
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Googlebot
+Allow: /

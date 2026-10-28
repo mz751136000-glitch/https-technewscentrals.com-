@@ -10,10 +10,10 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 space-y-10">
       
       {/* Navigation Breadcrumb */}
-      <div className="flex items-center justify-between border-b border-[#5fdee7]/20 pb-4">
+      <div className="flex items-center justify-between border-b border-slate-800 pb-4">
         <button
           onClick={onBackToFeed}
-          className="flex items-center gap-2 rounded-lg border border-[#5fdee7]/30 bg-[#0d2f26] px-3 py-1.5 text-xs font-mono text-[#5fdee7] hover:bg-[#124237] transition-all"
+          className="cursor-pointer flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/80 px-3.5 py-1.5 text-xs font-mono text-sky-400 hover:bg-slate-800 hover:border-sky-500/50 hover:text-white transition-all shadow-sm"
         >
           <ArrowLeft className="h-3.5 w-3.5" />
           <span>BACK TO JOURNAL FEED</span>
@@ -23,7 +23,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
 
       {/* Header */}
       <header className="space-y-3">
-        <div className="inline-flex items-center gap-2 rounded-md bg-[#103a31] border border-[#5fdee7]/30 px-2.5 py-1 text-[11px] font-mono font-bold text-[#5fdee7] uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 rounded-md bg-sky-500/10 border border-sky-500/30 px-2.5 py-1 text-[11px] font-mono font-bold text-sky-400 uppercase tracking-wider">
           <Shield className="h-3.5 w-3.5" />
           <span>LEGAL POLICY & COMPLIANCE</span>
         </div>
@@ -31,7 +31,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
           Privacy Policy
         </h1>
         <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-          At <strong>technewscentrals</strong>, we consider user privacy and digital sovereignty fundamental engineering principles, not bureaucratic checkboxes. This Privacy Policy details our operational data handling procedures.
+          At <strong className="text-white">technewscentrals</strong>, we consider user privacy and digital sovereignty fundamental engineering principles, not bureaucratic checkboxes. This Privacy Policy details our operational data handling procedures.
         </p>
       </header>
 
@@ -39,9 +39,9 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
       <div className="space-y-8 text-xs sm:text-sm text-slate-300 leading-relaxed">
         
         {/* Clause 1 */}
-        <section className="rounded-xl bg-[#0b2721] border border-[#5fdee7]/20 p-6 space-y-3">
+        <section className="rounded-xl bg-slate-900/90 border border-slate-800 p-6 space-y-3 shadow-xl">
           <h2 className="text-base sm:text-lg font-bold text-white font-mono flex items-center gap-2">
-            <EyeOff className="h-4 w-4 text-[#00ffaa]" />
+            <EyeOff className="h-4 w-4 text-emerald-400" />
             <span>1. Zero Behavioral Tracking & Telemetry Sale Guarantee</span>
           </h2>
           <p>
@@ -53,13 +53,13 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
         </section>
 
         {/* Clause 2 */}
-        <section className="rounded-xl bg-[#0b2721] border border-[#5fdee7]/20 p-6 space-y-3">
+        <section className="rounded-xl bg-slate-900/90 border border-slate-800 p-6 space-y-3 shadow-xl">
           <h2 className="text-base sm:text-lg font-bold text-white font-mono flex items-center gap-2">
-            <Lock className="h-4 w-4 text-[#5fdee7]" />
+            <Lock className="h-4 w-4 text-sky-400" />
             <span>2. On-Device Local Storage & Bookmarking</span>
           </h2>
           <p>
-            When you bookmark technical papers or adjust reading preferences (e.g., zoom mode, category filters), this state is stored exclusively in your browser’s local client storage (<code className="text-[#5fdee7] font-mono">localStorage</code>).
+            When you bookmark technical papers or adjust reading preferences (e.g., zoom mode, category filters), this state is stored exclusively in your browser’s local client storage (<code className="text-sky-400 font-mono">localStorage</code>).
           </p>
           <p>
             This data never leaves your device and is not transmitted to our backend servers. Clearing your browser cache or site data completely purges these records.
@@ -67,13 +67,13 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
         </section>
 
         {/* Clause 3 */}
-        <section className="rounded-xl bg-[#0b2721] border border-[#5fdee7]/20 p-6 space-y-3">
+        <section className="rounded-xl bg-slate-900/90 border border-slate-800 p-6 space-y-3 shadow-xl">
           <h2 className="text-base sm:text-lg font-bold text-white font-mono flex items-center gap-2">
-            <FileText className="h-4 w-4 text-[#00ffaa]" />
+            <FileText className="h-4 w-4 text-emerald-400" />
             <span>3. Google AdSense & Crawler Disclosures (ads.txt)</span>
           </h2>
           <p>
-            technewscentrals complies with IAB Tech Lab standards for Authorized Digital Sellers. Our server hosts root <code className="text-[#5fdee7] font-mono">/ads.txt</code> and <code className="text-[#5fdee7] font-mono">/app-ads.txt</code> files for automated crawler verification by Google AdSense (<code className="text-white font-mono">pub-7892341052189342</code>).
+            technewscentrals complies with IAB Tech Lab standards for Authorized Digital Sellers. Our server hosts root <code className="text-sky-400 font-mono">/ads.txt</code> and <code className="text-sky-400 font-mono">/app-ads.txt</code> files for automated crawler verification by Google AdSense (<code className="text-white font-mono">pub-7892341052189342</code>).
           </p>
           <p>
             Per strict platform guidelines, crawler verification files are served as plain text endpoints and contain zero tracking identifiers linked to individual reader sessions.
@@ -81,9 +81,9 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
         </section>
 
         {/* Clause 4 */}
-        <section className="rounded-xl bg-[#0b2721] border border-[#5fdee7]/20 p-6 space-y-3">
+        <section className="rounded-xl bg-slate-900/90 border border-slate-800 p-6 space-y-3 shadow-xl">
           <h2 className="text-base sm:text-lg font-bold text-white font-mono flex items-center gap-2">
-            <Shield className="h-4 w-4 text-[#5fdee7]" />
+            <Shield className="h-4 w-4 text-sky-400" />
             <span>4. GDPR & CCPA Compliance Rights</span>
           </h2>
           <p>
@@ -97,7 +97,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
         </section>
 
         {/* Clause 5: Official Contact */}
-        <section className="rounded-xl bg-[#071915] border border-[#5fdee7]/30 p-6 space-y-4">
+        <section className="rounded-xl bg-slate-900/80 border border-slate-800 p-6 space-y-4 shadow-xl">
           <h2 className="text-base sm:text-lg font-bold text-white font-mono">
             5. Contact The Data Protection Officer
           </h2>
@@ -105,15 +105,15 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
             For privacy inquiries, audit requests, or data deletion petitions, contact our legal desk directly:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
-            <div className="p-3 bg-[#0b2721] rounded-lg border border-[#5fdee7]/20">
+            <div className="p-3 bg-slate-950/80 rounded-lg border border-slate-800">
               <span className="text-slate-400 block mb-1">Phone / WhatsApp Desk:</span>
-              <a href="tel:+923020409739" className="text-[#00ffaa] font-bold hover:underline">
+              <a href="tel:+923020409739" className="cursor-pointer text-emerald-400 font-bold hover:underline">
                 +923020409739
               </a>
             </div>
-            <div className="p-3 bg-[#0b2721] rounded-lg border border-[#5fdee7]/20">
+            <div className="p-3 bg-slate-950/80 rounded-lg border border-slate-800">
               <span className="text-slate-400 block mb-1">Official Privacy Email:</span>
-              <a href="mailto:hostinger992@gmail.com" className="text-[#5fdee7] font-bold hover:underline">
+              <a href="mailto:hostinger992@gmail.com" className="cursor-pointer text-sky-400 font-bold hover:underline">
                 hostinger992@gmail.com
               </a>
             </div>
@@ -122,9 +122,9 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onBackToFe
 
       </div>
 
-      <div className="border-t border-[#5fdee7]/20 pt-6 flex justify-between items-center text-xs font-mono text-slate-500">
+      <div className="border-t border-slate-800 pt-6 flex justify-between items-center text-xs font-mono text-slate-500">
         <span>© 2026 technewscentrals. All rights reserved.</span>
-        <button onClick={onBackToFeed} className="text-[#5fdee7] hover:underline">
+        <button onClick={onBackToFeed} className="cursor-pointer text-sky-400 hover:text-sky-300 hover:underline">
           Return to Feed →
         </button>
       </div>

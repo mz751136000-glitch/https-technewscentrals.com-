@@ -2,16 +2,17 @@
 
 @layer base {
   :root {
-    --bg-dark-emerald: #0b2721;
-    --bg-deep-slate: #081c18;
-    --accent-cyan: #5fdee7;
-    --accent-emerald: #00ffaa;
-    --accent-neon: #00e5ff;
+    --bg-obsidian: #090d16;
+    --bg-slate-card: #0f172a;
+    --accent-primary: #38bdf8;
+    --accent-secondary: #6366f1;
+    --accent-mint: #10b981;
+    --border-glass: rgba(56, 189, 248, 0.2);
   }
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #081c18;
+    background-color: #090d16;
     color: #e2e8f0;
     overflow-x: hidden;
   }
@@ -19,25 +20,35 @@
   code, pre, kbd {
     font-family: 'JetBrains Mono', monospace;
   }
+
+  /* Cursor Friendly Enhancements */
+  button, a, [role="button"], .clickable {
+    cursor: pointer !important;
+    touch-action: manipulation;
+  }
+
+  input, textarea, select {
+    cursor: text;
+  }
 }
 
-/* Custom scrollbar */
+/* Custom Deep Obsidian Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #081c18;
+  background: #090d16;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #164e43;
+  background: #1e293b;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5fdee7;
+  background: #38bdf8;
 }
 
 /* Marquee continuous ticker tape animation */
@@ -60,20 +71,25 @@
   animation-play-state: paused;
 }
 
-/* Tech Grid Pattern */
+/* Tech Grid Pattern (Obsidian & Cyan) */
 .bg-tech-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(95, 222, 231, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(95, 222, 231, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
 }
 
 .glow-border {
-  border-color: rgba(95, 222, 231, 0.35);
-  box-shadow: 0 0 15px rgba(95, 222, 231, 0.12);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.12);
 }
 
 .glow-cyan-hover:hover {
-  border-color: #5fdee7;
-  box-shadow: 0 0 20px rgba(95, 222, 231, 0.25);
+  border-color: #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+}
+
+/* Cursor friendly clickable micro-interactions */
+.btn-press:active {
+  transform: scale(0.98);
 }

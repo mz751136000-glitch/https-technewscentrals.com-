@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Search, Terminal, Menu, X, BookOpen, Layers } from 'lucide-react';
 import { CategoryKey } from '../types';
 
-export type ViewType = 'feed' | 'about' | 'contact' | 'privacy' | 'terms' | 'disclaimer' | 'editors' | 'reader';
+export type ViewType = 'feed' | 'about' | 'contact' | 'privacy' | 'terms' | 'disclaimer' | 'editors' | 'reader' | 'sitemap';
 
 interface HeaderProps {
   currentCategory: CategoryKey;
@@ -50,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#5fdee7]/20 bg-[#081c18]/95 backdrop-blur-md transition-colors shadow-lg">
+    <header className="sticky top-0 z-40 w-full border-b border-sky-500/20 bg-slate-950/95 backdrop-blur-md transition-colors shadow-2xl">
       {/* Top Bar 3-Zone Contract */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         
@@ -58,16 +58,16 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center gap-3 shrink-0">
           <button 
             onClick={() => { onNavigateView('feed'); onSelectCategory('all'); }}
-            className="group flex items-center gap-2 text-left focus:outline-none"
+            className="cursor-pointer group flex items-center gap-2.5 text-left focus:outline-none"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#124237] to-[#0a2720] border border-[#5fdee7]/40 shadow-[0_0_12px_rgba(95,222,231,0.25)] group-hover:border-[#5fdee7] transition-all">
-              <span className="font-mono text-sm font-bold text-[#5fdee7]">tnc</span>
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-sky-600 via-indigo-600 to-slate-900 border border-sky-400/40 shadow-lg shadow-sky-500/25 group-hover:border-sky-400 group-hover:scale-105 transition-all">
+              <span className="font-mono text-sm font-black text-white">tnc</span>
             </div>
             <div>
-              <span className="block text-lg font-bold tracking-tight text-white group-hover:text-[#5fdee7] transition-colors whitespace-nowrap">
+              <span className="block text-lg font-extrabold tracking-tight text-white group-hover:text-sky-400 transition-colors whitespace-nowrap">
                 technewscentrals
               </span>
-              <span className="hidden sm:block text-[9px] font-mono tracking-widest text-[#5fdee7]/80 uppercase">
+              <span className="hidden sm:block text-[9px] font-mono tracking-widest text-sky-400 uppercase">
                 ENGINEERING JOURNAL - PUBLISHED DAILY
               </span>
             </div>
@@ -78,10 +78,10 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="hidden xl:flex items-center gap-6 text-[13px] font-medium text-slate-300">
           <button
             onClick={() => { onNavigateView('feed'); onSelectCategory('all'); }}
-            className={`whitespace-nowrap transition-colors py-1 ${
+            className={`cursor-pointer whitespace-nowrap transition-all py-1 ${
               activeView === 'feed' && currentCategory === 'all' && !isBookmarksActive
-                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
-                : 'text-slate-300 hover:text-white'
+                ? 'text-sky-400 border-b-2 border-sky-400 font-bold'
+                : 'text-slate-300 hover:text-white hover:text-sky-300'
             }`}
           >
             Home Feed
@@ -89,10 +89,10 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => { onNavigateView('feed'); onSelectCategory('ai-emerging-tech'); }}
-            className={`whitespace-nowrap transition-colors py-1 ${
+            className={`cursor-pointer whitespace-nowrap transition-all py-1 ${
               activeView === 'feed' && currentCategory === 'ai-emerging-tech'
-                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
-                : 'text-slate-300 hover:text-white'
+                ? 'text-sky-400 border-b-2 border-sky-400 font-bold'
+                : 'text-slate-300 hover:text-white hover:text-sky-300'
             }`}
           >
             AI & Emerging Tech
@@ -100,10 +100,10 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => { onNavigateView('feed'); onSelectCategory('gadgets-mobile'); }}
-            className={`whitespace-nowrap transition-colors py-1 ${
+            className={`cursor-pointer whitespace-nowrap transition-all py-1 ${
               activeView === 'feed' && currentCategory === 'gadgets-mobile'
-                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
-                : 'text-slate-300 hover:text-white'
+                ? 'text-sky-400 border-b-2 border-sky-400 font-bold'
+                : 'text-slate-300 hover:text-white hover:text-sky-300'
             }`}
           >
             Gadgets & Mobile
@@ -111,10 +111,10 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => { onNavigateView('feed'); onSelectCategory('software-apps'); }}
-            className={`whitespace-nowrap transition-colors py-1 ${
+            className={`cursor-pointer whitespace-nowrap transition-all py-1 ${
               activeView === 'feed' && currentCategory === 'software-apps'
-                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
-                : 'text-slate-300 hover:text-white'
+                ? 'text-sky-400 border-b-2 border-sky-400 font-bold'
+                : 'text-slate-300 hover:text-white hover:text-sky-300'
             }`}
           >
             Software & Apps
@@ -122,10 +122,10 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => { onNavigateView('feed'); onSelectCategory('gaming-entertainment'); }}
-            className={`whitespace-nowrap transition-colors py-1 ${
+            className={`cursor-pointer whitespace-nowrap transition-all py-1 ${
               activeView === 'feed' && currentCategory === 'gaming-entertainment'
-                ? 'text-[#5fdee7] border-b-2 border-[#5fdee7] font-semibold'
-                : 'text-slate-300 hover:text-white'
+                ? 'text-sky-400 border-b-2 border-sky-400 font-bold'
+                : 'text-slate-300 hover:text-white hover:text-sky-300'
             }`}
           >
             Gaming & Entertainment
@@ -144,11 +144,11 @@ export const Header: React.FC<HeaderProps> = ({
                   value={searchQuery}
                   onChange={(e) => onSearchChange(e.target.value)}
                   autoFocus
-                  className="w-48 sm:w-64 rounded-lg bg-[#0b2721] border border-[#5fdee7]/40 px-3 py-1.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-[#5fdee7] focus:ring-1 focus:ring-[#5fdee7]"
+                  className="w-48 sm:w-64 rounded-lg bg-slate-900 border border-sky-400/40 px-3 py-1.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
                 />
                 <button
                   onClick={() => { setIsSearchExpanded(false); onSearchChange(''); }}
-                  className="ml-1 p-1 text-slate-400 hover:text-white"
+                  className="cursor-pointer ml-1 p-1 text-slate-400 hover:text-white"
                   aria-label="Close search"
                 >
                   <X className="h-4 w-4" />
@@ -157,10 +157,10 @@ export const Header: React.FC<HeaderProps> = ({
             ) : (
               <button
                 onClick={() => setIsSearchExpanded(true)}
-                className="flex items-center gap-1.5 rounded-lg border border-[#5fdee7]/20 bg-[#0d2e26]/60 px-2.5 py-1.5 text-xs text-slate-300 hover:border-[#5fdee7]/50 hover:text-white transition-all"
+                className="cursor-pointer flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900/80 px-2.5 py-1.5 text-xs text-slate-300 hover:border-sky-400 hover:text-white transition-all shadow-sm"
                 title="Search engineering papers"
               >
-                <Search className="h-3.5 w-3.5 text-[#5fdee7]" />
+                <Search className="h-3.5 w-3.5 text-sky-400" />
                 <span className="hidden md:inline text-[11px] font-mono text-slate-400">Search</span>
               </button>
             )}
@@ -170,10 +170,10 @@ export const Header: React.FC<HeaderProps> = ({
           {bookmarkedCount > 0 && (
             <button
               onClick={onFilterBookmarks}
-              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-mono transition-all ${
+              className={`cursor-pointer flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-mono transition-all ${
                 isBookmarksActive
-                  ? 'bg-[#5fdee7] text-slate-950 font-bold shadow-[0_0_12px_rgba(95,222,231,0.4)]'
-                  : 'bg-[#0d2e26] text-[#5fdee7] border border-[#5fdee7]/30 hover:bg-[#124237]'
+                  ? 'bg-sky-500 text-slate-950 font-bold shadow-lg shadow-sky-500/30'
+                  : 'bg-slate-900 text-sky-400 border border-sky-500/30 hover:bg-slate-850 hover:border-sky-400'
               }`}
               title="Saved technical papers"
             >
@@ -185,17 +185,17 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Interactive Backend/Repository Inspector Button */}
           <button
             onClick={onOpenInspector}
-            className="flex items-center gap-1.5 rounded-lg bg-[#113a30] border border-[#5fdee7]/30 px-3 py-1.5 text-xs font-mono text-[#5fdee7] hover:bg-[#164e42] hover:border-[#5fdee7] hover:shadow-[0_0_15px_rgba(95,222,231,0.25)] transition-all whitespace-nowrap"
+            className="cursor-pointer flex items-center gap-1.5 rounded-lg bg-slate-900 border border-sky-500/30 px-3 py-1.5 text-xs font-mono text-sky-400 hover:bg-slate-850 hover:border-sky-400 hover:shadow-lg hover:shadow-sky-500/20 transition-all whitespace-nowrap"
             title="AdSense Crawler & Repository Inspector"
           >
-            <Terminal className="h-3.5 w-3.5 text-[#00ffaa]" />
+            <Terminal className="h-3.5 w-3.5 text-emerald-400" />
             <span className="hidden lg:inline">Repo Inspector</span>
           </button>
 
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-1.5 text-slate-300 hover:text-white focus:outline-none"
+            className="cursor-pointer xl:hidden p-1.5 text-slate-300 hover:text-white focus:outline-none"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -204,10 +204,10 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Top Categories Quick Strip (Prominently displayed at top) */}
-      <div className="border-t border-[#5fdee7]/15 bg-[#051713]/95 backdrop-blur-md px-4 py-2">
+      <div className="border-t border-slate-800 bg-slate-950/95 backdrop-blur-md px-4 py-2 shadow-inner">
         <div className="mx-auto flex max-w-7xl items-center justify-between overflow-x-auto no-scrollbar gap-2 sm:gap-4">
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-[10px] font-mono text-[#00ffaa] font-bold uppercase tracking-wider hidden sm:inline mr-1">
+            <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider hidden sm:inline mr-1">
               CATEGORIES:
             </span>
             {[
@@ -223,10 +223,10 @@ export const Header: React.FC<HeaderProps> = ({
                   onNavigateView('feed');
                   onSelectCategory(cat.id as CategoryKey);
                 }}
-                className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono transition-all whitespace-nowrap ${
+                className={`cursor-pointer flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-mono transition-all whitespace-nowrap ${
                   activeView === 'feed' && currentCategory === cat.id && !isBookmarksActive
-                    ? 'bg-[#5fdee7] text-slate-950 font-bold shadow-[0_0_12px_rgba(95,222,231,0.35)]'
-                    : 'text-slate-300 hover:text-white hover:bg-[#0c2f25] border border-[#5fdee7]/15'
+                    ? 'bg-sky-500 text-slate-950 font-bold shadow-md shadow-sky-500/30'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-900 border border-slate-800'
                 }`}
               >
                 <span>{cat.icon}</span>
@@ -236,16 +236,19 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           <div className="hidden lg:flex items-center gap-2 text-[11px] font-mono text-slate-400 shrink-0">
-            <span className="text-[#5fdee7]">ISSN 2981-4402</span>
+            <span className="text-sky-400">ISSN 2981-4402</span>
             <span>·</span>
-            <span className="text-slate-400">Published Daily</span>
+            <span className="text-emerald-400">AdSense & RevBid Ready</span>
           </div>
         </div>
       </div>
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="xl:hidden border-t border-[#5fdee7]/20 bg-[#081c18] px-4 py-4 space-y-2">
+        <div className="xl:hidden border-t border-slate-800 bg-slate-950 px-4 py-4 space-y-2 shadow-2xl">
+          <div className="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider mb-2">
+            RESEARCH CATEGORIES
+          </div>
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -253,37 +256,58 @@ export const Header: React.FC<HeaderProps> = ({
                 item.action();
                 setMobileMenuOpen(false);
               }}
-              className={`block w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
+              className={`cursor-pointer block w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${
                 isNavActive(item)
-                  ? 'bg-[#103a31] text-[#5fdee7] font-semibold border-l-2 border-[#5fdee7]'
-                  : 'text-slate-300 hover:bg-[#0c2720] hover:text-white'
+                  ? 'bg-slate-900 text-sky-400 font-bold border-l-2 border-sky-400'
+                  : 'text-slate-300 hover:bg-slate-900 hover:text-white'
               }`}
             >
               {item.label}
             </button>
           ))}
-          <div className="pt-2 border-t border-[#5fdee7]/15 space-y-1">
+          <div className="pt-3 border-t border-slate-800 space-y-1">
+            <div className="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider mb-2">
+              PAGES & GOVERNANCE
+            </div>
+            <button
+              onClick={() => { onNavigateView('about'); setMobileMenuOpen(false); }}
+              className="cursor-pointer block w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:text-white"
+            >
+              About Us
+            </button>
+            <button
+              onClick={() => { onNavigateView('contact'); setMobileMenuOpen(false); }}
+              className="cursor-pointer block w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:text-white"
+            >
+              Contact Us (+923020409739)
+            </button>
             <button
               onClick={() => { onNavigateView('privacy'); setMobileMenuOpen(false); }}
-              className="block w-full text-left px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+              className="cursor-pointer block w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:text-white"
             >
               Privacy Policy
             </button>
             <button
               onClick={() => { onNavigateView('terms'); setMobileMenuOpen(false); }}
-              className="block w-full text-left px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+              className="cursor-pointer block w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:text-white"
             >
               Terms & Conditions
             </button>
             <button
               onClick={() => { onNavigateView('disclaimer'); setMobileMenuOpen(false); }}
-              className="block w-full text-left px-3 py-1.5 text-xs text-slate-400 hover:text-white"
+              className="cursor-pointer block w-full text-left px-3 py-1.5 text-xs text-slate-300 hover:text-white"
             >
               Disclaimer
             </button>
             <button
+              onClick={() => { onNavigateView('sitemap'); setMobileMenuOpen(false); }}
+              className="cursor-pointer block w-full text-left px-3 py-1.5 text-xs text-emerald-400 hover:text-emerald-300 font-mono"
+            >
+              Site Index & Sitemap (31 URIs)
+            </button>
+            <button
               onClick={() => { onOpenInspector(); setMobileMenuOpen(false); }}
-              className="flex w-full items-center gap-2 px-3 py-2 text-xs font-mono text-[#00ffaa] bg-[#0c2720] rounded-md mt-2"
+              className="cursor-pointer flex w-full items-center gap-2 px-3 py-2 text-xs font-mono text-emerald-400 bg-slate-900 border border-slate-800 rounded-lg mt-2"
             >
               <Terminal className="h-4 w-4" />
               <span>Validate ads.txt & Crawler Status</span>
