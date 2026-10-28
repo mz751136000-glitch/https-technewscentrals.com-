@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark-emerald: #0b2721;
+    --bg-deep-slate: #081c18;
+    --accent-cyan: #5fdee7;
+    --accent-emerald: #00ffaa;
+    --accent-neon: #00e5ff;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #081c18;
+    color: #e2e8f0;
+    overflow-x: hidden;
+  }
+
+  code, pre, kbd {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #081c18;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #164e43;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5fdee7;
+}
+
+/* Marquee continuous ticker tape animation */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 38s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Tech Grid Pattern */
+.bg-tech-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(95, 222, 231, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(95, 222, 231, 0.04) 1px, transparent 1px);
+}
+
+.glow-border {
+  border-color: rgba(95, 222, 231, 0.35);
+  box-shadow: 0 0 15px rgba(95, 222, 231, 0.12);
+}
+
+.glow-cyan-hover:hover {
+  border-color: #5fdee7;
+  box-shadow: 0 0 20px rgba(95, 222, 231, 0.25);
+}

@@ -1,0 +1,6 @@
+{
+  "name": "technewscentrals",
+  "description": "An independent journal of digital technology, AI systems, modern gadgets, software, and gaming culture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

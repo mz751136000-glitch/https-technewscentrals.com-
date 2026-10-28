@@ -1,0 +1,4 @@
+# Google AdSense Authorized Digital Sellers
+# Domain: technewscentrals.com
+# Format: <Field #1>, <Field #2>, <Field #3>, <Field #4>
+google.com, pub-7892341052189342, DIRECT, f08c47fec0942fa0
